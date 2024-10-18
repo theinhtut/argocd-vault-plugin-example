@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: echo-secrets-container
-        image: alpine:3.20.3
+        image: busybox
         command: ['sh', '-c', 'echo "KEY_ID=$KEY_ID"; echo "TOKEN=$TOKEN"; sleep 3600']
         env:
         - name: KEY_ID
