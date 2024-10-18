@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-secrets-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-secrets
+  template:
+    metadata:
+      labels:
+        app: echo-secrets
+    spec:
+      containers:
+      - name: echo-secrets-container
+        image: alpine:3.20.3
+        command: ['sh', '-c', 'echo "KEY_ID=$KEY_ID"; echo "TOKEN=$TOKEN"; sleep 3600']
+        env:
+        - name: KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: my-env-secrets
+              key: KEY_ID
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: my-env-secrets
+              key: TOKEN
