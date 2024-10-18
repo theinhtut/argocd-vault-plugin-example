@@ -16,15 +16,15 @@ spec:
       containers:
       - name: echo-secrets-container
         image: busybox
-        command: ['sh', '-c', 'echo "KEY_ID=$KEY_ID"; echo "TOKEN=$TOKEN"; sleep 3600']
+        command: ['sh', '-c', 'echo "MY_APP_KEY_ID=$MY_APP_KEY_ID"; echo "MY_APP_TOKEN=$MY_APP_TOKEN"; sleep 3600']
         env:
-        - name: KEY_ID
+        - name: MY_APP_KEY_ID
           valueFrom:
             secretKeyRef:
               name: my-env-secrets
-              key: KEY_ID
-        - name: TOKEN
+              key: MY_APP_KEY_ID
+        - name: MY_APP_TOKEN
           valueFrom:
             secretKeyRef:
               name: my-env-secrets
-              key: TOKEN
+              key: MY_APP_TOKEN
